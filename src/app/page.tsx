@@ -1,5 +1,6 @@
-import Header from "@/components/global/header"
 import Home from "@/components/pages/home"
+import Header from "@/components/global/header";
+import Footer from "@/components/global/footer";
 
 
 export default function Page() {
@@ -7,6 +8,7 @@ export default function Page() {
     <div>
       <Header />
       <Home />
+      <Footer />
     </div>
   );
 }
