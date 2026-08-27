@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
+import { CATEGORIES, PRODUCTS } from "./constants";
 import { useState, useEffect, useRef } from "react";
-import { CATEGORIES, PRODUCTS } from "../constants";
 import { Menu, Bell, Search, SlidersHorizontal, Home, ClipboardList, ShoppingCart, HeadphonesIcon, User, ChevronRight } from "lucide-react";
 
 export const OrderPhase = ({ isActive }) => {

@@ -17,11 +17,16 @@ export const ScanPhase = ({ isActive }) => {
 
     return (
         <div className={cn(
-            "relative flex flex-col items-center justify-center transition-all duration-700",
+            "absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 p-6",
             isActive ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-95 pointer-events-none"
         )}>
+            <div className="text-center mb-8">
+                <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 mb-2">Scan to Order</h3>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">Point your camera at the table QR</p>
+            </div>
+
             <div className="relative">
-                <div className="relative w-56 h-56 border-2 border-dashed border-primary/50 rounded-[1.5rem] flex items-center justify-center bg-primary/5 overflow-hidden">
+                <div className="relative w-56 h-56 border-2 border-dashed border-primary/50 rounded-[2rem] flex items-center justify-center bg-primary/5 overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-1 bg-primary blur-[2px] animate-[scan_2s_ease-in-out_infinite]" />
                     <QrCode className="w-32 h-32 text-primary" strokeWidth={1} />
 

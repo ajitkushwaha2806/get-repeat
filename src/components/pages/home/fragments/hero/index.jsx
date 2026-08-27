@@ -5,7 +5,6 @@ import { PhoneAnimation } from "./phone-animation";
 import { ArrowRight, PlayCircle } from "lucide-react";
 import { Highlighter } from "@/components/ui/highlighter";
 import { GridPattern } from "@/components/ui/grid-pattern";
-import { AnimatedText } from "@/components/global/animated-text";
 
 export const Hero = () => {
     return (
@@ -53,7 +52,7 @@ export const Hero = () => {
                             text="Live Demo"
                             variant="secondary"
                             size="lg"
-                            onClick={() => console.log("Demo Clicked")}
+                            href="https://bite.getrepeat.in"
                             icon={{ icon: PlayCircle, position: "start" }}
                             className="flex-1 sm:w-auto sm:flex-none font-medium rounded-full bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex justify-center px-1 sm:px-8 text-sm sm:text-base whitespace-nowrap"
                         />
@@ -61,7 +60,7 @@ export const Hero = () => {
                             text="Get Started"
                             variant="primary"
                             size="lg"
-                            href="/register"
+                            href="https://app.getrepeat.in"
                             icon={{ icon: ArrowRight, position: "end" }}
                             className="flex-1 sm:w-auto sm:flex-none font-semibold rounded-full shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all flex justify-center px-1 sm:px-8 text-sm sm:text-base whitespace-nowrap"
                         />
