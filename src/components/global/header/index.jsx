@@ -17,7 +17,7 @@ export default function Header() {
     }, [isOpen]);
 
     return (
-        <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl px-3 rounded-xl backdrop-blur-md bg-white/70 dark:bg-zinc-950/50 border border-gray-200 dark:border-zinc-800 shadow-lg transition-all duration-300">
+        <header className="absolute top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl px-3 rounded-xl backdrop-blur-md bg-white/70 dark:bg-zinc-950/50 border border-gray-200 dark:border-zinc-800 shadow-lg transition-all duration-300">
             <div className="flex items-center justify-between py-3">
                 <Link href="/" className="group flex items-center gap-2.5">
                     <Image
