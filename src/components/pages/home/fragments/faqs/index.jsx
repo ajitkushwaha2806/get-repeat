@@ -26,13 +26,15 @@ export default function Faqs() {
                 >
                     <Title
                         title={
-                            <span className="text-3xl md:text-6xl">
+                            <span className="text-3xl md:text-6xl leading-tight inline-block">
                                 Frequently Asked <br />
-                                <Highlighter action="highlight" color="#f2715b">
-                                    <span className="text-white relative z-10 px-2 py-1">
-                                        Questions
-                                    </span>
-                                </Highlighter>
+                                <span className="inline-block mt-2 md:mt-4">
+                                    <Highlighter action="highlight" color="#f2715b">
+                                        <span className="text-white relative z-10 px-2 py-1">
+                                            Questions
+                                        </span>
+                                    </Highlighter>
+                                </span>
                             </span>
                         }
                         description=""
