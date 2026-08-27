@@ -48,27 +48,27 @@ export const Hero = () => {
                         Turn every table into a repeat customer. QR ordering that doesn't just take orders — it brings guests back.
                     </p>
 
-                    <div className="mt-10 flex flex-row items-center gap-3 sm:gap-4 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 delay-500">
+                    <div className="mt-10 p-3 flex flex-row items-center gap-3 sm:gap-4 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 delay-500">
                         <Button
-                            text="Start Free Trial"
-                            variant="primary"
-                            size="lg"
-                            href="/register"
-                            icon={{ icon: ArrowRight, position: "end" }}
-                            className="flex-1 sm:w-auto sm:flex-none font-semibold rounded-full shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all flex justify-center px-1 sm:px-8 text-sm sm:text-base whitespace-nowrap"
-                        />
-                        <Button
-                            text="Try Yourself"
+                            text="Live Demo"
                             variant="secondary"
                             size="lg"
                             onClick={() => console.log("Demo Clicked")}
                             icon={{ icon: PlayCircle, position: "start" }}
                             className="flex-1 sm:w-auto sm:flex-none font-medium rounded-full bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex justify-center px-1 sm:px-8 text-sm sm:text-base whitespace-nowrap"
                         />
+                        <Button
+                            text="Get Started"
+                            variant="primary"
+                            size="lg"
+                            href="/register"
+                            icon={{ icon: ArrowRight, position: "end" }}
+                            className="flex-1 sm:w-auto sm:flex-none font-semibold rounded-full shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all flex justify-center px-1 sm:px-8 text-sm sm:text-base whitespace-nowrap"
+                        />
                     </div>
                 </div>
 
-                <div className="relative w-full py-4 md:py-0 flex items-center justify-center animate-in fade-in zoom-in-95 duration-700 delay-700">
+                <div className="relative w-full flex items-center justify-center animate-in fade-in zoom-in-95 duration-700 delay-700">
                     <PhoneAnimation />
                 </div>
             </div>

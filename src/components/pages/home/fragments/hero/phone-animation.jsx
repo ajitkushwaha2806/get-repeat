@@ -1,35 +1,71 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
-import { QrCode, CheckCircle2, ChevronRight, Gift, PartyPopper, Menu, Bell, Search, SlidersHorizontal, Home, ClipboardList, ShoppingCart, HeadphonesIcon, User, Clock, Receipt, Utensils } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { QrCode, CheckCircle2, ChevronRight, Gift, PartyPopper, Menu, Bell, Search, SlidersHorizontal, Home, ClipboardList, ShoppingCart, HeadphonesIcon, User, Clock, Receipt, Utensils, ExternalLink } from "lucide-react";
 
-const ScanPhase = ({ isActive }) => (
-    <div className={cn(
-        "absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 p-6",
-        isActive ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-95 pointer-events-none"
-    )}>
-        <div className="text-center mb-8">
-            <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 mb-2">Scan to Order</h3>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">Point your camera at the table QR</p>
-        </div>
+const ScanPhase = ({ isActive }) => {
+    const [scanned, setScanned] = useState(false);
 
-        <div className="relative w-48 h-48 border-2 border-dashed border-primary/50 rounded-2xl flex items-center justify-center bg-primary/5 overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-primary blur-[2px] animate-[scan_2s_ease-in-out_infinite]" />
-            <QrCode className="w-24 h-24 text-primary" strokeWidth={1} />
+    useEffect(() => {
+        if (!isActive) {
+            setScanned(false);
+            return;
+        }
+        const t = setTimeout(() => setScanned(true), 1200);
+        return () => clearTimeout(t);
+    }, [isActive]);
 
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-8 h-8 bg-white rounded-md shadow-sm p-0.5 flex items-center justify-center z-10">
-                    <img src="/assets/images/bite-logo.png" alt="Bite Logo" className="w-full h-full rounded-md object-contain" />
-                </div>
+    return (
+        <div className={cn(
+            "absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 p-6",
+            isActive ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-95 pointer-events-none"
+        )}>
+            <div className="text-center mb-8">
+                <h3 className="text-xl font-bold text-zinc-800 dark:text-zinc-100 mb-2">Scan to Order</h3>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">Point your camera at the table QR</p>
             </div>
 
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl-xl" />
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary rounded-tr-xl" />
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary rounded-bl-xl" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary rounded-br-xl" />
+            <div className="relative">
+                <div className="relative w-56 h-56 border-2 border-dashed border-primary/50 rounded-[2rem] flex items-center justify-center bg-primary/5 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-primary blur-[2px] animate-[scan_2s_ease-in-out_infinite]" />
+                    <QrCode className="w-32 h-32 text-primary" strokeWidth={1} />
+
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                        <div className="w-14 h-14 bg-white rounded-xl shadow-lg p-1.5 flex items-center justify-center border border-zinc-100">
+                            <img src="/assets/images/bite-logo.png" alt="Bite Logo" className="w-full h-full rounded-lg object-contain" />
+                        </div>
+                    </div>
+
+                    <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-primary rounded-tl-[1.5rem]" />
+                    <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-primary rounded-tr-[1.5rem]" />
+                    <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-primary rounded-bl-[1.5rem]" />
+                    <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-primary rounded-br-[1.5rem]" />
+                </div>
+
+                <AnimatePresence>
+                    {scanned && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 16, scale: 0.75 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 16, scale: 0.75 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            className="absolute -top-6 -right-2 flex items-center gap-2.5 bg-white border border-zinc-200 dark:border-zinc-800 p-1.5 pr-2 rounded-md shadow-[0_12px_40px_rgba(0,0,0,0.15)] z-30"
+                        >
+                            <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
+                                <ExternalLink className="w-4 h-4 text-primary" />
+                            </div>
+                            <span className="text-xs font-bold text-zinc-900 tracking-wide pr-1">bite.com</span>
+                            <div className="bg-primary text-white text-[10px] px-3.5 py-1.5 rounded-md font-bold shrink-0 shadow-sm cursor-pointer hover:bg-primary/90 transition-colors">
+                                Open
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 const CATEGORIES = [
     { name: "Soups", image: "/assets/images/restaurant/6a8b470d36d4bd6b16b77a72/menu/items/item-1787767283718-48f2bcdb-0853-4dc4-935d-6bd55e093300_card.avif" },
@@ -255,7 +291,7 @@ const OrderStatusPhase = ({ isActive }) => {
         }
         const t1 = setTimeout(() => setStatus(1), 1500);
         const t2 = setTimeout(() => setStatus(2), 2800);
-        
+
         return () => {
             clearTimeout(t1);
             clearTimeout(t2);
@@ -275,24 +311,24 @@ const OrderStatusPhase = ({ isActive }) => {
                 <div className={cn(
                     "px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider animate-pulse transition-colors duration-500",
                     status === 0 ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-500" :
-                    status === 1 ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-500" :
-                    "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-500"
+                        status === 1 ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-500" :
+                            "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-500"
                 )}>
                     {status === 0 ? "Accepted" : status === 1 ? "Preparing" : "Served"}
                 </div>
             </div>
-            
+
             <div className="flex-1 overflow-y-auto px-4 py-5 flex flex-col gap-6 no-scrollbar">
                 <div className="flex flex-col relative px-2 mt-2">
                     {/* Background Line */}
                     <div className="absolute top-4 left-6 right-6 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full z-0" />
-                    
+
                     {/* Active Line */}
                     <div className={cn(
                         "absolute top-4 left-6 h-1 bg-primary rounded-full z-0 transition-all duration-700 ease-in-out",
                         status === 0 ? "right-[calc(100%-1.5rem)]" : status === 1 ? "right-1/2" : "right-6"
                     )} />
-                    
+
                     <div className="flex items-start justify-between z-10">
                         {/* Step 1 */}
                         <div className="flex flex-col items-center gap-2">
@@ -337,61 +373,61 @@ const OrderStatusPhase = ({ isActive }) => {
                     </div>
                 </div>
 
-            <div className="bg-white dark:bg-zinc-900 rounded-2xl p-4 border border-zinc-100 dark:border-zinc-800 shadow-sm">
-                <div className="flex items-center gap-2 mb-4 text-zinc-900 dark:text-zinc-100">
-                    <Receipt className="w-4 h-4 text-primary" />
-                    <h4 className="font-bold text-sm">Item Summary</h4>
-                </div>
-                <div className="flex flex-col gap-3">
-                    <div className="flex items-start justify-between">
-                        <div className="flex gap-2">
-                            <div className="w-4 h-4 bg-zinc-100 dark:bg-zinc-800 rounded flex items-center justify-center text-[10px] font-bold text-zinc-500 mt-0.5">1</div>
-                            <div className="flex flex-col">
-                                <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Jain Pav Bhaji</span>
-                                <span className="text-[10px] text-zinc-500">Extra Butter</span>
-                            </div>
-                        </div>
-                        <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">₹119</span>
+                <div className="bg-white dark:bg-zinc-900 rounded-2xl p-4 border border-zinc-100 dark:border-zinc-800 shadow-sm">
+                    <div className="flex items-center gap-2 mb-4 text-zinc-900 dark:text-zinc-100">
+                        <Receipt className="w-4 h-4 text-primary" />
+                        <h4 className="font-bold text-sm">Item Summary</h4>
                     </div>
-                    <div className="flex items-start justify-between">
-                        <div className="flex gap-2">
-                            <div className="w-4 h-4 bg-zinc-100 dark:bg-zinc-800 rounded flex items-center justify-center text-[10px] font-bold text-zinc-500 mt-0.5">1</div>
-                            <div className="flex flex-col">
-                                <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Paneer Tikka</span>
+                    <div className="flex flex-col gap-3">
+                        <div className="flex items-start justify-between">
+                            <div className="flex gap-2">
+                                <div className="w-4 h-4 bg-zinc-100 dark:bg-zinc-800 rounded flex items-center justify-center text-[10px] font-bold text-zinc-500 mt-0.5">1</div>
+                                <div className="flex flex-col">
+                                    <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Jain Pav Bhaji</span>
+                                    <span className="text-[10px] text-zinc-500">Extra Butter</span>
+                                </div>
                             </div>
+                            <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">₹119</span>
                         </div>
-                        <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">₹199</span>
-                    </div>
-                    <div className="flex items-start justify-between">
-                        <div className="flex gap-2">
-                            <div className="w-4 h-4 bg-zinc-100 dark:bg-zinc-800 rounded flex items-center justify-center text-[10px] font-bold text-zinc-500 mt-0.5">1</div>
-                            <div className="flex flex-col">
-                                <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Fried Rice</span>
+                        <div className="flex items-start justify-between">
+                            <div className="flex gap-2">
+                                <div className="w-4 h-4 bg-zinc-100 dark:bg-zinc-800 rounded flex items-center justify-center text-[10px] font-bold text-zinc-500 mt-0.5">1</div>
+                                <div className="flex flex-col">
+                                    <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Paneer Tikka</span>
+                                </div>
                             </div>
+                            <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">₹199</span>
                         </div>
-                        <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">₹89</span>
-                    </div>
-                    <div className="w-full h-px bg-zinc-100 dark:bg-zinc-800 my-1" />
-                    <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400">Total</span>
-                        <span className="text-sm font-black text-primary">₹407</span>
+                        <div className="flex items-start justify-between">
+                            <div className="flex gap-2">
+                                <div className="w-4 h-4 bg-zinc-100 dark:bg-zinc-800 rounded flex items-center justify-center text-[10px] font-bold text-zinc-500 mt-0.5">1</div>
+                                <div className="flex flex-col">
+                                    <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">Fried Rice</span>
+                                </div>
+                            </div>
+                            <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">₹89</span>
+                        </div>
+                        <div className="w-full h-px bg-zinc-100 dark:bg-zinc-800 my-1" />
+                        <div className="flex items-center justify-between">
+                            <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400">Total</span>
+                            <span className="text-sm font-black text-primary">₹407</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div className="p-4 bg-white dark:bg-zinc-900 border-t border-zinc-100 dark:border-zinc-800 shrink-0">
-            <div className="w-full bg-zinc-50 dark:bg-zinc-950 rounded-xl p-3 flex items-center justify-between border border-zinc-100 dark:border-zinc-800">
-                <div className="flex flex-col">
-                    <span className="text-[10px] font-medium text-zinc-500">Est. Time</span>
-                    <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">12 - 15 mins</span>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <Clock className="w-5 h-5" />
+            <div className="p-4 bg-white dark:bg-zinc-900 border-t border-zinc-100 dark:border-zinc-800 shrink-0">
+                <div className="w-full bg-zinc-50 dark:bg-zinc-950 rounded-xl p-3 flex items-center justify-between border border-zinc-100 dark:border-zinc-800">
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-medium text-zinc-500">Est. Time</span>
+                        <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">12 - 15 mins</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <Clock className="w-5 h-5" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     );
 };
 
@@ -401,11 +437,11 @@ export const PhoneAnimation = () => {
     useEffect(() => {
         let isMounted = true;
         let timeout;
-        
+
         const runPhases = () => {
             const durations = [2500, 4500, 2000, 4000, 4500];
             let current = 0;
-            
+
             const next = () => {
                 if (!isMounted) return;
                 timeout = setTimeout(() => {
@@ -416,7 +452,7 @@ export const PhoneAnimation = () => {
             };
             next();
         };
-        
+
         runPhases();
         return () => {
             isMounted = false;
@@ -425,7 +461,7 @@ export const PhoneAnimation = () => {
     }, []);
 
     return (
-        <div className="relative w-full max-w-[320px] sm:max-w-[320px] aspect-[9/19] bg-white dark:bg-zinc-950 rounded-[2.5rem] border-[8px] border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-visible mx-auto">
+        <div className="relative w-full max-w-[280px] sm:max-w-[280px] aspect-[9/18.5] bg-white dark:bg-zinc-950 rounded-[2.5rem] border-[8px] border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-visible mx-auto">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-zinc-200 dark:bg-zinc-800 rounded-b-2xl z-20" />
             <div className="relative w-full h-full overflow-hidden rounded-[2rem] bg-zinc-50 dark:bg-zinc-900">
                 <ScanPhase isActive={phase === 0} />
