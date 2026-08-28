@@ -1,9 +1,8 @@
 "use client"
-
-import { useLayoutEffect, useRef } from "react"
 import type React from "react"
 import { useInView } from "motion/react"
 import { annotate } from "rough-notation"
+import { useLayoutEffect, useRef } from "react"
 import { type RoughAnnotation } from "rough-notation/lib/model"
 
 type AnnotationAction =
@@ -44,8 +43,7 @@ export function Highlighter({
     once: true,
     margin: "-10%",
   })
-
-  // If isView is false, always show. If isView is true, wait for inView
+  
   const shouldShow = !isView || isInView
 
   useLayoutEffect(() => {
@@ -68,13 +66,39 @@ export function Highlighter({
       annotation = currentAnnotation
       currentAnnotation.show()
 
+      let timeoutId: ReturnType<typeof setTimeout>
+      let lastWidth = element.offsetWidth
+      let lastHeight = element.offsetHeight
+
       resizeObserver = new ResizeObserver(() => {
-        currentAnnotation.hide()
-        currentAnnotation.show()
+        if (!element) return
+        
+        const newWidth = element.offsetWidth
+        const newHeight = element.offsetHeight
+        
+        if (Math.abs(newWidth - lastWidth) > 2 || Math.abs(newHeight - lastHeight) > 2) {
+          lastWidth = newWidth
+          lastHeight = newHeight
+          
+          clearTimeout(timeoutId)
+          timeoutId = setTimeout(() => {
+            currentAnnotation.hide()
+            currentAnnotation.show()
+          }, 100)
+        }
       })
 
       resizeObserver.observe(element)
-      resizeObserver.observe(document.body)
+      if (document.fonts) {
+        document.fonts.ready.then(() => {
+          if (element) {
+            lastWidth = element.offsetWidth
+            lastHeight = element.offsetHeight
+            currentAnnotation.hide()
+            currentAnnotation.show()
+          }
+        })
+      }
     }
 
     return () => {
@@ -95,7 +119,7 @@ export function Highlighter({
   ])
 
   return (
-    <span ref={elementRef} className="relative inline-block bg-transparent">
+    <span ref={elementRef} className="relative inline-flex items-center justify-center leading-none">
       {children}
     </span>
   )

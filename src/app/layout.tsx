@@ -1,9 +1,10 @@
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Poppins, Geist } from "next/font/google";
-
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+import Header from "@/components/global/header";
+import Footer from "@/components/global/footer";
+import { Poppins } from "next/font/google";
+import ChatWidget from "@/components/global/chat-widget";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -24,9 +25,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", poppins.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", poppins.variable, "font-sans")}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <ChatWidget />
+      </body>
     </html>
   );
 }

@@ -12,9 +12,9 @@ export default function Footer() {
     return (
         <motion.footer
             {...FOOTER_ANIMATION}
-            className="w-full bg-gray-50 border-t border-gray-200 dark:border-gray-800 py-6 px-6 md:px-12 text-sm text-gray-600 dark:text-gray-400"
+            className="w-full bg-gray-50 border-t border-gray-200 dark:border-gray-800 py-6 text-sm text-gray-600 dark:text-gray-400"
         >
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="mx-auto w-[95%] max-w-6xl px-3 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p className="text-center md:text-left">
                     © {currentYear} {WEBSITE_NAME}. All rights reserved.
                 </p>

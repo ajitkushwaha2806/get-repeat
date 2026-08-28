@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { GridPattern } from "@/components/ui/grid-pattern";
@@ -20,7 +21,7 @@ export default function SectionWrapper({ id = "", title, children }) {
                 )}
             />
 
-            <div className="container relative mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="container relative mx-auto w-[95%] max-w-6xl px-3">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}

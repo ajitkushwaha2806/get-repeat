@@ -21,8 +21,8 @@ export const Hero = () => {
                 )}
             />
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 lg:gap-8 items-center">
-                <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="relative z-10 w-[95%] max-w-6xl mx-auto px-3 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <div className="lg:col-span-8 flex flex-col items-center lg:items-start text-center lg:text-left">
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
                         <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary ring-1 ring-inset ring-primary/20">
                             🚀 Introducing GetRepeat.in
@@ -67,7 +67,7 @@ export const Hero = () => {
                     </div>
                 </div>
 
-                <div className="relative w-full flex items-center justify-center animate-in fade-in zoom-in-95 duration-700 delay-700">
+                <div className="lg:col-span-4 relative w-full flex items-center justify-center lg:justify-end animate-in fade-in zoom-in-95 duration-700 delay-700">
                     <PhoneAnimation />
                 </div>
             </div>
