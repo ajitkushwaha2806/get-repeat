@@ -29,7 +29,7 @@ export default function Faqs() {
                             <span className="text-3xl md:text-6xl leading-tight inline-block">
                                 Frequently Asked <br />
                                 <span className="inline-block mt-2 md:mt-4">
-                                    <Highlighter action="highlight" color="#f2715b">
+                                    <Highlighter action="highlight" color="var(--primary)">
                                         <span className="text-white relative z-10 px-2 py-1">
                                             Questions
                                         </span>

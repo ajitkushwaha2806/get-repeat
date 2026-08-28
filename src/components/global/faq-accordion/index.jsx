@@ -19,7 +19,7 @@ function FAQItem({ question, answer, isOpen, onClick }) {
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                     className={cn(
                         "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                        isOpen ? "bg-[#f2715b] text-white" : "bg-neutral-100 dark:bg-neutral-800 text-neutral-500"
+                        isOpen ? "bg-primary text-white" : "bg-neutral-100 dark:bg-neutral-800 text-neutral-500"
                     )}
                 >
                     <ChevronDown className="w-5 h-5" />

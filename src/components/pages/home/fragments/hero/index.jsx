@@ -33,7 +33,7 @@ export const Hero = () => {
                         <div className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.2] text-gray-900 dark:text-white">
                             Turn <span className="text-primary">Every Diner</span> Into{" "}
                             <span className="inline-flex -rotate-1 transform transition-transform hover:rotate-0 duration-500 hover:scale-105 cursor-default mt-2 mx-1 align-middle">
-                                <Highlighter action="highlight" color="#f2715b">
+                                <Highlighter action="highlight" color="var(--primary)">
                                     <span className="text-white relative z-10 px-3 py-1 rounded-lg whitespace-nowrap">
                                         Repeat
                                     </span>

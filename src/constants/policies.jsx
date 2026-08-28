@@ -130,7 +130,7 @@ export const DISCLAIMER_POLICY_DATA = {
                 You can reach our legal and support team by emailing us directly at{" "}
                 <a
                     href={`mailto:${COMPANY_INFO.emails.legal}`}
-                    className="text-[#f2715b] hover:text-[#f2715b]/80 font-medium hover:underline underline-offset-2 transition-colors"
+                    className="text-primary hover:text-primary/80 font-medium hover:underline underline-offset-2 transition-colors"
                 >
                     {COMPANY_INFO.emails.legal}
                 </a>
@@ -193,7 +193,7 @@ export const REFUND_POLICY_DATA = {
                 </p>
                 <a
                     href={`mailto:${COMPANY_INFO.emails.billing}`}
-                    className="inline-flex justify-center items-center px-6 py-3 bg-[#f2715b] text-white font-medium rounded-xl hover:bg-[#f2715b]/90 transition-colors shadow-lg shadow-[#f2715b]/20"
+                    className="inline-flex justify-center items-center px-6 py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
                 >
                     Contact Billing Support
                 </a>
@@ -239,7 +239,7 @@ export const RETURN_POLICY_DATA = {
                 </p>
                 <a
                     href={`mailto:${COMPANY_INFO.emails.support}`}
-                    className="inline-flex justify-center items-center px-6 py-3 bg-[#f2715b] text-white font-medium rounded-xl hover:bg-[#f2715b]/90 transition-colors shadow-lg shadow-[#f2715b]/20"
+                    className="inline-flex justify-center items-center px-6 py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
                 >
                     Contact Support
                 </a>
@@ -299,7 +299,7 @@ export const TERMS_CONDITIONS_DATA = {
                 You can reach our legal team directly at{" "}
                 <a
                     href={`mailto:${COMPANY_INFO.emails.legal}`}
-                    className="text-[#f2715b] hover:text-[#f2715b]/80 font-medium hover:underline underline-offset-2 transition-colors"
+                    className="text-primary hover:text-primary/80 font-medium hover:underline underline-offset-2 transition-colors"
                 >
                     {COMPANY_INFO.emails.legal}
                 </a>
@@ -360,7 +360,7 @@ export const PRIVACY_POLICY_DATA = {
                 For any questions or concerns regarding our privacy practices, please email our Data Protection Officer at{" "}
                 <a
                     href={`mailto:${COMPANY_INFO.emails.privacy}`}
-                    className="text-[#f2715b] hover:text-[#f2715b]/80 font-medium hover:underline underline-offset-2 transition-colors"
+                    className="text-primary hover:text-primary/80 font-medium hover:underline underline-offset-2 transition-colors"
                 >
                     {COMPANY_INFO.emails.privacy}
                 </a>
@@ -412,7 +412,7 @@ export const CONTACT_PAGE_DATA = {
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
                 <a
                     href={`mailto:${COMPANY_INFO.emails.support}`}
-                    className="inline-flex justify-center items-center px-6 py-3 bg-[#f2715b] text-white font-medium rounded-xl hover:bg-[#f2715b]/90 transition-colors shadow-lg shadow-[#f2715b]/20"
+                    className="inline-flex justify-center items-center px-6 py-3 bg-primary text-white font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
                 >
                     Email Support
                 </a>

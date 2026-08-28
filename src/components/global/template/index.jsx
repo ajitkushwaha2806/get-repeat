@@ -44,7 +44,7 @@ const Template = ({ title = "", heading = "", description = "", ctaDescription =
                         <>
                             {title && (
                                 <h1 className="text-4xl md:text-6xl font-extrabold text-neutral-800 text-white tracking-tight text-center">
-                                    <Highlighter action="highlight" color="#f2715b">
+                                    <Highlighter action="highlight" color="var(--primary)">
                                         <span className="relative z-10 px-2">{title}</span>
                                     </Highlighter>
                                 </h1>
